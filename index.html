@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Irapuato Seguro | Portal de Monitoreo e Incidencia Delictiva</title>
+  
+  <!-- SEO Técnico Avanzado -->
+  <meta name="description" content="Mapa interactivo y portal de monitoreo de la incidencia delictiva y riesgo por colonias en Irapuato, Guanajuato. Visualiza estadísticas, tendencias y reportes mensuales en tiempo real.">
+  <meta name="keywords" content="Irapuato, mapa delictivo, colonias de irapuato, seguridad irapuato, Guanajuato, incidencia delictiva, delincuencia, reportes de crimen, mapas interactivos">
+  <meta name="author" content="Chrystian Fabian Lozano Ramirez (chrystian.dev)">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://TU-USUARIO.github.io/mapa-irapuato/">
+  
+  <!-- Favicon Moderno (SVG) -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" href="favicon.svg" type="image/svg+xml">
+  
+  <!-- Metatags Open Graph (para WhatsApp, Facebook, LinkedIn, Discord) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Irapuato Seguro | Mapa Delictivo e Incidencia Interactivo">
+  <meta property="og:description" content="Portal interactivo táctico para visualizar zonas de riesgo, estadísticas y reportes mensuales de delincuencia por colonias en Irapuato, Guanajuato.">
+  <meta property="og:url" content="https://TU-USUARIO.github.io/mapa-irapuato/">
+  <meta property="og:image" content="https://raw.githubusercontent.com/TU-USUARIO/mapa-irapuato/main/favicon.svg">
+  <meta property="og:site_name" content="Irapuato Seguro">
+  <meta property="og:locale" content="es_MX">
+  
+  <!-- Metatags Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Irapuato Seguro | Mapa Delictivo e Incidencia">
+  <meta name="twitter:description" content="Portal interactivo de monitoreo de delincuencia por colonias en Irapuato. Analiza estadísticas y tendencias delictivas en tiempo real.">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/TU-USUARIO/mapa-irapuato/main/favicon.svg">
+
+  <!-- Datos Estructurados Schema.org (JSON-LD) para Google Search y Google Dataset Search -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": "Mapa de Incidencia Delictiva y Riesgo de Irapuato",
+    "description": "Base de datos y mapa interactivo que rastrea y analiza incidentes delictivos por colonias en Irapuato, Guanajuato. Actualizado mensualmente con datos históricos y estadísticas analíticas.",
+    "url": "https://TU-USUARIO.github.io/mapa-irapuato/",
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "temporalCoverage": "2025-07-01/..",
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Irapuato, Guanajuato, México",
+      "geo": {
+        "@type": "GeoShape",
+        "box": "20.5011254 -101.5415263 20.8483756 -101.1414426"
+      }
+    },
+    "creator": {
+      "@type": "Person",
+      "name": "Chrystian Fabian Lozano Ramirez",
+      "url": "https://chrystian.dev"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Irapuato Seguro",
+      "url": "https://TU-USUARIO.github.io/mapa-irapuato/"
+    },
+    "keywords": [
+      "Irapuato",
+      "Incidencia Delictiva",
+      "Seguridad",
+      "Mapa de Riesgo",
+      "Colonias",
+      "Guanajuato"
+    ]
+  }
+  </script>
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Google Fonts (Outfit) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- App Container -->
+  <div class="app-container">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <!-- Toggle Button for Sidebar on Mobile -->
+      <button class="sidebar-toggle" id="sidebarCloseBtn" aria-label="Cerrar panel">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+
+      <!-- Sidebar Header -->
+      <header class="sidebar-header">
+        <div class="brand">
+          <div class="logo-glow"></div>
+          <i class="fa-solid fa-shield-halved brand-icon"></i>
+          <div>
+            <h1>Irapuato Seguro</h1>
+            <p>Portal de Monitoreo de Riesgo</p>
+          </div>
+        </div>
+      </header>
+
+      <!-- Stats Grid -->
+      <section class="stats-container">
+        <div class="stat-card total-crimes">
+          <span class="stat-label">Total de Incidentes</span>
+          <span class="stat-value" id="statTotalCrimes">0</span>
+          <span class="stat-delta text-danger"><i class="fa-solid fa-arrow-trend-up"></i> +12% este mes</span>
+        </div>
+        <div class="stat-row">
+          <div class="stat-card risk-rating high-risk" id="statRiskCard">
+            <span class="stat-label">Riesgo General</span>
+            <span class="stat-value" id="statRiskLevel">Alto</span>
+          </div>
+          <div class="stat-card safe-zones">
+            <span class="stat-label">Zonas Seguras</span>
+            <span class="stat-value" id="statSafeCount">0</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Search & Filters Section -->
+      <section class="filters-container">
+        <!-- Search bar -->
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="neighborhoodSearch" placeholder="Buscar colonia..." autocomplete="off">
+          <button id="clearSearchBtn" class="clear-btn" style="display: none;"><i class="fa-solid fa-xmark"></i></button>
+          <!-- Autocomplete results -->
+          <div class="search-autocomplete" id="searchAutocomplete"></div>
+        </div>
+
+        <!-- Filter Sections Toggle tabs -->
+        <div class="filter-group">
+          <h3>Filtros por Tipo de Delito</h3>
+          <div class="crime-types-filter" id="crimeTypesFilter">
+            <!-- Dynamically populated in app.js -->
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h3>Filtros por Severidad y Horario</h3>
+          <div class="severity-filter">
+            <button class="severity-btn active" data-severity="all">Todos</button>
+            <button class="severity-btn" data-severity="Alta"><span class="badge badge-high"></span> Alto</button>
+            <button class="severity-btn" data-severity="Media"><span class="badge badge-medium"></span> Medio</button>
+            <button class="severity-btn" data-severity="Baja"><span class="badge badge-low"></span> Bajo</button>
+          </div>
+          <div class="time-filter">
+            <button class="time-btn active" data-time="all"><i class="fa-solid fa-clock"></i> Todos</button>
+            <button class="time-btn" data-time="Mañana" title="06:00 - 12:00"><i class="fa-solid fa-sun"></i> Mañana</button>
+            <button class="time-btn" data-time="Tarde" title="12:00 - 19:00"><i class="fa-solid fa-cloud-sun"></i> Tarde</button>
+            <button class="time-btn" data-time="Noche" title="19:00 - 06:00"><i class="fa-solid fa-moon"></i> Noche</button>
+          </div>
+        </div>
+      </section>
+
+
+
+      <!-- Action Button & Source Info -->
+      <footer class="sidebar-footer">
+        <button class="btn btn-primary" id="openReportFormBtn" disabled>
+          <i class="fa-solid fa-clock"></i> Registrar Incidente (Próximamente)
+        </button>
+        <div class="data-source-info">
+          <p><i class="fa-solid fa-database"></i> Fuente: Datos basados en el <strong>Observatorio Ciudadano Irapuato ¿Cómo Vamos?</strong></p>
+          <p><i class="fa-solid fa-calendar-check"></i> Act. de Datos: <span id="lastUpdateLabel">Cargando...</span></p>
+          <p class="author-credits"><i class="fa-solid fa-code"></i> Desarrollado por <a href="https://chrystian.dev" target="_blank" rel="noopener noreferrer">Chrystian Fabian Lozano Ramirez</a></p>
+        </div>
+      </footer>
+    </aside>
+
+    <!-- Sidebar Open Trigger (Floating on Mobile) -->
+    <button class="sidebar-open-btn" id="sidebarOpenBtn" aria-label="Abrir panel">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <!-- Main Map Container -->
+    <main class="map-view">
+      <!-- The Map element -->
+      <div id="map"></div>
+
+      <!-- Map Overlay Widgets -->
+      <div class="map-overlay-top-right" data-html2canvas-ignore="true">
+        <!-- Visualization Toggles -->
+        <div class="layer-selector glass-panel">
+          <button class="layer-btn active" id="btnShowZones" title="Zonas de Calor por Colonia">
+            <i class="fa-solid fa-circle-nodes"></i> <span>Colonias</span>
+          </button>
+          <button class="layer-btn" id="btnShowMarkers" title="Puntos Delictivos (Marcadores)">
+            <i class="fa-solid fa-location-dot"></i> <span>Incidentes</span>
+          </button>
+          <button class="layer-btn" id="btnShowHeatmap" title="Mapa de Densidad (Heatmap)">
+            <i class="fa-solid fa-fire"></i> <span>Mapa de Calor</span>
+          </button>
+        </div>
+
+        <!-- Export Toggles -->
+        <div class="export-selector glass-panel">
+          <button class="export-btn" id="btnExportPng" title="Descargar Mapa PNG">
+            <i class="fa-solid fa-file-image"></i> <span>Exportar PNG</span>
+          </button>
+          <button class="export-btn" id="btnExportPdf" title="Descargar Reporte PDF">
+            <i class="fa-solid fa-file-pdf"></i> <span>Exportar PDF</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="map-overlay-bottom-left">
+        <!-- Interactive Legend -->
+        <div class="legend-panel glass-panel">
+          <h4>Nivel de Riesgo</h4>
+          <div class="legend-scale">
+            <div class="legend-item"><span class="legend-color high"></span> <span>Crítico</span></div>
+            <div class="legend-item"><span class="legend-color medium-high"></span> <span>Alto</span></div>
+            <div class="legend-item"><span class="legend-color medium"></span> <span>Moderado</span></div>
+            <div class="legend-item"><span class="legend-color low"></span> <span>Bajo</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline Animation Control Widget -->
+      <div class="map-overlay-timeline glass-panel">
+        <div class="timeline-controls">
+          <button class="timeline-play-btn" id="timelinePlayBtn" title="Animar Historial">
+            <i class="fa-solid fa-play"></i>
+          </button>
+          <div class="timeline-slider-container">
+            <span class="timeline-date" id="timelineDateLabel">Todos los meses</span>
+            <input type="range" id="timelineSlider" min="0" max="12" value="12" class="timeline-slider">
+            <div class="timeline-ticks" id="timelineTicks">
+              <!-- Ticks generated in JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Charts Sidebar Open Trigger (Floating on Mobile/Tablet) -->
+    <button class="charts-sidebar-open-btn" id="chartsSidebarOpenBtn" aria-label="Abrir analíticas">
+      <i class="fa-solid fa-chart-line"></i>
+    </button>
+
+    <!-- Right Sidebar (Charts & Analytics) -->
+    <aside class="charts-sidebar" id="chartsSidebar">
+      <!-- Toggle Button for Sidebar on Mobile/Tablet -->
+      <button class="sidebar-toggle-right" id="chartsSidebarCloseBtn" aria-label="Cerrar panel de analíticas">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+
+      <header class="sidebar-header">
+        <div class="brand">
+          <div class="logo-glow"></div>
+          <i class="fa-solid fa-chart-column brand-icon text-info"></i>
+          <div>
+            <h1>Análisis Delictivo</h1>
+            <p>Gráficas e Indicadores</p>
+          </div>
+        </div>
+      </header>
+
+      <div class="charts-scroll-container">
+        <div class="chart-card">
+          <h4>Distribución de Delitos</h4>
+          <div class="chart-wrapper">
+            <canvas id="crimeTypeChart"></canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <h4>Historial Mensual</h4>
+          <div class="chart-wrapper">
+            <canvas id="crimeTrendChart"></canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <h4>Colonias de Mayor Riesgo</h4>
+          <div class="chart-wrapper">
+            <canvas id="topNeighborhoodsChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Custom Modal/Drawer for Reporting Crimes -->
+    <div class="modal-overlay" id="reportModal">
+      <div class="modal-content glass-panel animate-slide-up">
+        <button class="modal-close-btn" id="closeReportModalBtn"><i class="fa-solid fa-xmark"></i></button>
+        
+        <h2><i class="fa-solid fa-triangle-exclamation text-danger"></i> Reportar Nuevo Incidente</h2>
+        <p class="modal-subtitle">Tu reporte es anónimo y ayuda a mantener actualizados los mapas de riesgo.</p>
+
+        <form id="crimeReportForm">
+          <!-- Step 1: Ubicación -->
+          <div class="form-group">
+            <label for="reportNeighborhood"><i class="fa-solid fa-map-location-dot"></i> Colonia de Irapuato</label>
+            <select id="reportNeighborhood" required>
+              <option value="" disabled selected>Selecciona la colonia...</option>
+              <!-- Populated in JS -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label><i class="fa-solid fa-crosshairs"></i> Posición en el Mapa</label>
+            <div class="map-picker-instruction">
+              <i class="fa-solid fa-info-circle"></i> Haz clic en el mapa detrás de esta ventana para colocar el marcador con precisión, o bien, usa la posición promedio de la colonia seleccionada.
+            </div>
+            <div class="coords-display">
+              <div>Lat: <span id="pickedLat">N/A</span></div>
+              <div>Lon: <span id="pickedLon">N/A</span></div>
+            </div>
+          </div>
+
+          <!-- Step 2: Detalles -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="reportCrimeType"><i class="fa-solid fa-masks-theater"></i> Tipo de Delito</label>
+              <select id="reportCrimeType" required>
+                <option value="" disabled selected>Selecciona el tipo...</option>
+                <option value="Homicidio">Homicidio</option>
+                <option value="Robo a Transeúnte">Robo a Transeúnte</option>
+                <option value="Robo de Vehículo">Robo de Vehículo</option>
+                <option value="Asalto/Lesiones">Asalto/Lesiones</option>
+                <option value="Extorsión/Fraude">Extorsión/Fraude</option>
+                <option value="Vandalismo">Vandalismo</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="reportDate"><i class="fa-solid fa-calendar-days"></i> Fecha y Hora</label>
+              <input type="datetime-local" id="reportDate" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="reportTimePeriod"><i class="fa-solid fa-clock"></i> Período Horario</label>
+              <select id="reportTimePeriod" required>
+                <option value="Mañana">Mañana (06:00 - 12:00)</option>
+                <option value="Tarde">Tarde (12:00 - 19:00)</option>
+                <option value="Noche" selected>Noche (19:00 - 06:00)</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="reportSeverity"><i class="fa-solid fa-gauge-high"></i> Gravedad Estimada</label>
+              <select id="reportSeverity" required>
+                <option value="Baja">Baja (Vandalismo, altercados menores)</option>
+                <option value="Media" selected>Media (Robo sin armas, asaltos menores)</option>
+                <option value="Alta">Alta (Robo con violencia, armas de fuego, homicidio)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reportDescription"><i class="fa-solid fa-quote-left"></i> Descripción del Suceso</label>
+            <textarea id="reportDescription" rows="3" placeholder="Describe brevemente lo ocurrido (ej. robo de motoneta con violencia, dos sujetos armados...)" required></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" id="cancelReportBtn">Cancelar</button>
+            <button type="submit" class="btn btn-primary-submit">Confirmar Reporte</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="toast-container" id="toastContainer"></div>
+  </div>
+
+  <!-- Leaflet JS Library -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
+  <!-- Leaflet Heatmap Plugin (loaded from static CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+  
+  <!-- Chart.js Library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- html2canvas (Captura de pantalla de Mapa) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <!-- jsPDF (Generador de reportes PDF) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- Custom Scripts -->
+  <script src="js/app.js"></script>
+</body>
+</html>

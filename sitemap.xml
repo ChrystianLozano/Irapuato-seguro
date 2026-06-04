@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <!-- Recuerda cambiar 'TU-USUARIO' por tu usuario real de GitHub al subir el proyecto -->
+    <loc>https://TU-USUARIO.github.io/mapa-irapuato/</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

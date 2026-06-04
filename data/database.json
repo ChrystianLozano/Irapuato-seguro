@@ -1,0 +1,1612 @@
+{
+  "crimeTypes": {
+    "Homicidio": {
+      "icon": "fa-person-falling-burst",
+      "color": "#ff3b30",
+      "glow": "rgba(255, 59, 48, 0.4)",
+      "desc": "Delito de alto impacto que atenta contra la vida.",
+      "defaultSeverity": "Alta"
+    },
+    "Robo a Transeúnte": {
+      "icon": "fa-person-running",
+      "color": "#ff9500",
+      "glow": "rgba(255, 149, 0, 0.4)",
+      "desc": "Robo o despojo de pertenencias a peatones en la vía pública.",
+      "defaultSeverity": "Media"
+    },
+    "Robo de Vehículo": {
+      "icon": "fa-car-burst",
+      "color": "#ffcc00",
+      "glow": "rgba(255, 204, 0, 0.4)",
+      "desc": "Robo de autos, camionetas o motocicletas estacionadas o con violencia.",
+      "defaultSeverity": "Media"
+    },
+    "Asalto/Lesiones": {
+      "icon": "fa-hand-fist",
+      "color": "#ff3b30",
+      "glow": "rgba(255, 59, 48, 0.4)",
+      "desc": "Agresiones físicas, riñas o atracos con armas blancas/de fuego.",
+      "defaultSeverity": "Alta"
+    },
+    "Extorsión/Fraude": {
+      "icon": "fa-phone-volume",
+      "color": "#00c7fc",
+      "glow": "rgba(0, 199, 252, 0.4)",
+      "desc": "Llamadas de extorsión telefónica, cobro de piso o estafas.",
+      "defaultSeverity": "Baja"
+    },
+    "Vandalismo": {
+      "icon": "fa-spray-can",
+      "color": "#34c759",
+      "glow": "rgba(52, 199, 89, 0.4)",
+      "desc": "Daños a propiedad pública o privada, pintas y alteración del orden.",
+      "defaultSeverity": "Baja"
+    }
+  },
+  "neighborhoods": [
+    {
+      "id": "centro",
+      "name": "Centro Histórico",
+      "lat": 20.6740385,
+      "lon": -101.3467244,
+      "baseRisk": 45
+    },
+    {
+      "id": "las_heras",
+      "name": "Las Heras",
+      "lat": 20.6838749,
+      "lon": -101.3745169,
+      "baseRisk": 78
+    },
+    {
+      "id": "doce_diciembre",
+      "name": "12 de Diciembre",
+      "lat": 20.6553993,
+      "lon": -101.3585337,
+      "baseRisk": 82
+    },
+    {
+      "id": "morelos",
+      "name": "Morelos",
+      "lat": 20.6735495,
+      "lon": -101.3635734,
+      "baseRisk": 75
+    },
+    {
+      "id": "san_vicente",
+      "name": "San Vicente de Malvas",
+      "lat": 20.6847313,
+      "lon": -101.3011883,
+      "baseRisk": 68
+    },
+    {
+      "id": "constitucion",
+      "name": "Constitución de Apatzingán",
+      "lat": 20.6887183,
+      "lon": -101.3158933,
+      "baseRisk": 72
+    },
+    {
+      "id": "san_cayetano",
+      "name": "Villas de San Cayetano",
+      "lat": 20.6917785,
+      "lon": -101.3231556,
+      "baseRisk": 80
+    },
+    {
+      "id": "san_roque",
+      "name": "San Roque",
+      "lat": 20.5975306,
+      "lon": -101.3390406,
+      "baseRisk": 85
+    },
+    {
+      "id": "san_miguel",
+      "name": "Barrio de San Miguel",
+      "lat": 20.6793706,
+      "lon": -101.3484627,
+      "baseRisk": 65
+    },
+    {
+      "id": "santa_julia",
+      "name": "Santa Julia",
+      "lat": 20.6821829,
+      "lon": -101.3511746,
+      "baseRisk": 60
+    },
+    {
+      "id": "las_reynas",
+      "name": "Las Reynas",
+      "lat": 20.690646,
+      "lon": -101.3547149,
+      "baseRisk": 55
+    },
+    {
+      "id": "purisima_jardin",
+      "name": "Purísima del Jardín",
+      "lat": 20.6425314,
+      "lon": -101.3869939,
+      "baseRisk": 70
+    },
+    {
+      "id": "valle_sol",
+      "name": "Valle del Sol",
+      "lat": 20.6537678,
+      "lon": -101.3485967,
+      "baseRisk": 62
+    },
+    {
+      "id": "ganadera",
+      "name": "La Ganadera",
+      "lat": 20.6695,
+      "lon": -101.3725,
+      "baseRisk": 58
+    },
+    {
+      "id": "playa_azul",
+      "name": "Playa Azul",
+      "lat": 20.6639182,
+      "lon": -101.3648503,
+      "baseRisk": 50
+    },
+    {
+      "id": "san_martin",
+      "name": "San Martín de Porres",
+      "lat": 20.6622999,
+      "lon": -101.3800252,
+      "baseRisk": 74
+    },
+    {
+      "id": "los_cobos",
+      "name": "Los Cobos",
+      "lat": 20.7023987,
+      "lon": -101.3676474,
+      "baseRisk": 48
+    },
+    {
+      "id": "bella_vista",
+      "name": "Bella Vista",
+      "lat": 20.697,
+      "lon": -101.342,
+      "baseRisk": 42
+    },
+    {
+      "id": "juarez",
+      "name": "Benito Juárez",
+      "lat": 20.7045354,
+      "lon": -101.35827,
+      "baseRisk": 52
+    },
+    {
+      "id": "flores_magon",
+      "name": "Flores Magón Sur",
+      "lat": 20.662544,
+      "lon": -101.3432126,
+      "baseRisk": 64
+    },
+    {
+      "id": "tierra_nueva",
+      "name": "Tierra Nueva",
+      "lat": 20.6572094,
+      "lon": -101.3265889,
+      "baseRisk": 66
+    },
+    {
+      "id": "hacienda_virgen",
+      "name": "Hacienda La Virgen",
+      "lat": 20.6520243,
+      "lon": -101.3324536,
+      "baseRisk": 56
+    }
+  ],
+  "incidents": [
+    {
+      "id": "inc_1",
+      "type": "Homicidio",
+      "colonia": "san_roque",
+      "lat": 20.59781,
+      "lon": -101.33924,
+      "date": "2025-07-04T23:15:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Ataque directo con arma de fuego a las afueras de una tienda de conveniencia en la calle Principal."
+    },
+    {
+      "id": "inc_2",
+      "type": "Robo a Transeúnte",
+      "colonia": "centro",
+      "lat": 20.67431,
+      "lon": -101.34702,
+      "date": "2025-07-12T10:30:00",
+      "timePeriod": "Mañana",
+      "severity": "Media",
+      "description": "Sujeto despojó de teléfono celular y cartera a estudiante cerca del Templo del Hospitalito."
+    },
+    {
+      "id": "inc_3",
+      "type": "Robo de Vehículo",
+      "colonia": "las_reynas",
+      "lat": 20.69114,
+      "lon": -101.35512,
+      "date": "2025-07-19T21:40:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Robo de camioneta pickup estacionada sobre Paseo de las Reynas."
+    },
+    {
+      "id": "inc_4",
+      "type": "Asalto/Lesiones",
+      "colonia": "las_heras",
+      "lat": 20.68425,
+      "lon": -101.37512,
+      "date": "2025-07-28T19:50:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Riña con arma blanca entre particulares en la calle Limón, dejando una persona lesionada."
+    },
+    {
+      "id": "inc_5",
+      "type": "Vandalismo",
+      "colonia": "doce_diciembre",
+      "lat": 20.65581,
+      "lon": -101.35899,
+      "date": "2025-08-03T15:20:00",
+      "timePeriod": "Tarde",
+      "severity": "Baja",
+      "description": "Grupo de jóvenes realizando pintas (graffiti) en bardas de viviendas privadas en la Av. Solidaridad."
+    },
+    {
+      "id": "inc_6",
+      "type": "Extorsión/Fraude",
+      "colonia": "centro",
+      "lat": 20.67382,
+      "lon": -101.34585,
+      "date": "2025-08-11T11:00:00",
+      "timePeriod": "Mañana",
+      "severity": "Baja",
+      "description": "Comerciante reportó llamada de extorsión telefónica exigiendo 'cobro de cuota'. Colgó a tiempo."
+    },
+    {
+      "id": "inc_7",
+      "type": "Homicidio",
+      "colonia": "san_cayetano",
+      "lat": 20.69201,
+      "lon": -101.32354,
+      "date": "2025-08-22T02:10:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Hallazgo de persona sin vida con impactos de proyectil de arma de fuego en lote baldío."
+    },
+    {
+      "id": "inc_8",
+      "type": "Robo a Transeúnte",
+      "colonia": "morelos",
+      "lat": 20.67398,
+      "lon": -101.36401,
+      "date": "2025-08-30T20:15:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Asalto a mano armada por parte de dos sujetos a bordo de una motocicleta en la Av. Reforma."
+    },
+    {
+      "id": "inc_9",
+      "type": "Robo de Vehículo",
+      "colonia": "san_miguel",
+      "lat": 20.68001,
+      "lon": -101.3491,
+      "date": "2025-09-05T04:30:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Robo de motocicleta Italika color negra estacionada afuera de domicilio particular."
+    },
+    {
+      "id": "inc_10",
+      "type": "Asalto/Lesiones",
+      "colonia": "san_martin",
+      "lat": 20.66265,
+      "lon": -101.38042,
+      "date": "2025-09-14T22:00:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Asalto violento a transeúnte; víctima fue agredida físicamente tras oponer resistencia al robo."
+    },
+    {
+      "id": "inc_11",
+      "type": "Vandalismo",
+      "colonia": "morelos",
+      "lat": 20.67312,
+      "lon": -101.36312,
+      "date": "2025-09-22T17:40:00",
+      "timePeriod": "Tarde",
+      "severity": "Baja",
+      "description": "Daños causados a luminarias públicas y cristales de paradero de autobús por vándalos."
+    },
+    {
+      "id": "inc_12",
+      "type": "Homicidio",
+      "colonia": "las_heras",
+      "lat": 20.68341,
+      "lon": -101.37399,
+      "date": "2025-09-29T21:10:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Intervención de la fiscalía tras agresión armada contra fachada de vivienda que dejó un fallecido."
+    },
+    {
+      "id": "inc_13",
+      "type": "Robo a Transeúnte",
+      "colonia": "santa_julia",
+      "lat": 20.68254,
+      "lon": -101.35165,
+      "date": "2025-10-06T13:15:00",
+      "timePeriod": "Tarde",
+      "severity": "Media",
+      "description": "Arrebato de bolsa de mano a mujer mayor mientras caminaba por la calle Tulipanes."
+    },
+    {
+      "id": "inc_14",
+      "type": "Extorsión/Fraude",
+      "colonia": "las_reynas",
+      "lat": 20.69012,
+      "lon": -101.35412,
+      "date": "2025-10-15T15:00:00",
+      "timePeriod": "Tarde",
+      "severity": "Media",
+      "description": "Fraude mediante compra-venta falsa de vehículo reportado en la zona comercial aledaña."
+    },
+    {
+      "id": "inc_15",
+      "type": "Robo de Vehículo",
+      "colonia": "valle_sol",
+      "lat": 20.65401,
+      "lon": -101.34901,
+      "date": "2025-10-23T19:30:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Sujetos armados despojaron a conductor de su vehículo sedán al llegar a su domicilio."
+    },
+    {
+      "id": "inc_16",
+      "type": "Asalto/Lesiones",
+      "colonia": "doce_diciembre",
+      "lat": 20.6551,
+      "lon": -101.35811,
+      "date": "2025-11-01T20:50:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Atraco violento en tienda de abarrotes; el tendero fue herido levemente con arma blanca."
+    },
+    {
+      "id": "inc_17",
+      "type": "Homicidio",
+      "colonia": "san_roque",
+      "lat": 20.59711,
+      "lon": -101.33881,
+      "date": "2025-11-09T23:45:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Enfrentamiento violento en las inmediaciones de la colonia que derivó en la pérdida de una vida."
+    },
+    {
+      "id": "inc_18",
+      "type": "Vandalismo",
+      "colonia": "purisima_jardin",
+      "lat": 20.64299,
+      "lon": -101.38722,
+      "date": "2025-11-18T18:25:00",
+      "timePeriod": "Tarde",
+      "severity": "Baja",
+      "description": "Deterioro de juegos infantiles en el parque vecinal y quema de basura deliberada."
+    },
+    {
+      "id": "inc_19",
+      "type": "Robo a Transeúnte",
+      "colonia": "flores_magon",
+      "lat": 20.66289,
+      "lon": -101.34389,
+      "date": "2025-11-26T07:15:00",
+      "timePeriod": "Mañana",
+      "severity": "Media",
+      "description": "Robo de mochila y pertenencias a obrero que se dirigía a su parada de transporte de personal."
+    },
+    {
+      "id": "inc_20",
+      "type": "Robo de Vehículo",
+      "colonia": "tierra_nueva",
+      "lat": 20.65751,
+      "lon": -101.3269,
+      "date": "2025-12-03T18:40:00",
+      "timePeriod": "Tarde",
+      "severity": "Media",
+      "description": "Cristalazo y robo de objetos de valor del interior de vehículo estacionado."
+    },
+    {
+      "id": "inc_21",
+      "type": "Asalto/Lesiones",
+      "colonia": "ganadera",
+      "lat": 20.67001,
+      "lon": -101.37301,
+      "date": "2025-12-11T20:10:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Asalto a repartidor de comida rápida por dos delincuentes armados con navajas."
+    },
+    {
+      "id": "inc_22",
+      "type": "Homicidio",
+      "colonia": "constitucion",
+      "lat": 20.68902,
+      "lon": -101.31622,
+      "date": "2025-12-21T01:30:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Detonaciones de arma de fuego en vía pública resultando en el deceso de un hombre."
+    },
+    {
+      "id": "inc_23",
+      "type": "Extorsión/Fraude",
+      "colonia": "playa_azul",
+      "lat": 20.66421,
+      "lon": -101.36512,
+      "date": "2025-12-29T10:45:00",
+      "timePeriod": "Mañana",
+      "severity": "Baja",
+      "description": "Cobro indebido de estacionamiento público mediante amenazas por sujetos no identificados."
+    },
+    {
+      "id": "inc_24",
+      "type": "Robo de Vehículo",
+      "colonia": "hacienda_virgen",
+      "lat": 20.65241,
+      "lon": -101.33285,
+      "date": "2026-01-05T22:30:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Hurto de motocicleta de cochera abierta durante altas horas de la noche."
+    },
+    {
+      "id": "inc_25",
+      "type": "Asalto/Lesiones",
+      "colonia": "san_vicente",
+      "lat": 20.68512,
+      "lon": -101.30154,
+      "date": "2026-01-14T21:15:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Riña familiar campal en festividad local que terminó en lesiones de gravedad con machete."
+    },
+    {
+      "id": "inc_26",
+      "type": "Homicidio",
+      "colonia": "doce_diciembre",
+      "lat": 20.65595,
+      "lon": -101.35885,
+      "date": "2026-01-23T22:50:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Homicidio doloso derivado de un ataque armado directo en la calle San Juan."
+    },
+    {
+      "id": "inc_27",
+      "type": "Robo a Transeúnte",
+      "colonia": "centro",
+      "lat": 20.67389,
+      "lon": -101.34612,
+      "date": "2026-02-02T16:40:00",
+      "timePeriod": "Tarde",
+      "severity": "Media",
+      "description": "Arrebato de teléfono celular a una mujer en el pasaje peatonal junto a la Presidencia Municipal."
+    },
+    {
+      "id": "inc_28",
+      "type": "Vandalismo",
+      "colonia": "san_cayetano",
+      "lat": 20.69221,
+      "lon": -101.32395,
+      "date": "2026-02-10T12:00:00",
+      "timePeriod": "Tarde",
+      "severity": "Baja",
+      "description": "Pintadas de grafiti en cristales del centro comunitario recién inaugurado."
+    },
+    {
+      "id": "inc_29",
+      "type": "Homicidio",
+      "colonia": "las_heras",
+      "lat": 20.68412,
+      "lon": -101.37485,
+      "date": "2026-02-18T20:30:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Ataque directo perpetrado por motociclistas contra una barbería local, fallece una persona."
+    },
+    {
+      "id": "inc_30",
+      "type": "Robo de Vehículo",
+      "colonia": "santa_julia",
+      "lat": 20.68198,
+      "lon": -101.35085,
+      "date": "2026-02-26T05:20:00",
+      "timePeriod": "Mañana",
+      "severity": "Media",
+      "description": "Hurto de un automóvil sedan Nissan Tsuru estacionado frente a la iglesia."
+    },
+    {
+      "id": "inc_31",
+      "type": "Asalto/Lesiones",
+      "colonia": "morelos",
+      "lat": 20.67365,
+      "lon": -101.36399,
+      "date": "2026-03-05T20:10:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Asalto violento a gasolinera; amagaron a los despachadores con armas cortas."
+    },
+    {
+      "id": "inc_32",
+      "type": "Extorsión/Fraude",
+      "colonia": "las_reynas",
+      "lat": 20.69085,
+      "lon": -101.3552,
+      "date": "2026-03-13T11:30:00",
+      "timePeriod": "Mañana",
+      "severity": "Baja",
+      "description": "Denuncia de extorsión mediante cobro de piso virtual a locatarios del mercado regional."
+    },
+    {
+      "id": "inc_33",
+      "type": "Homicidio",
+      "colonia": "san_roque",
+      "lat": 20.59795,
+      "lon": -101.33925,
+      "date": "2026-03-22T23:00:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Homicidio con proyectiles de arma de fuego en las inmediaciones del campo deportivo de la colonia."
+    },
+    {
+      "id": "inc_34",
+      "type": "Robo a Transeúnte",
+      "colonia": "san_miguel",
+      "lat": 20.67912,
+      "lon": -101.34812,
+      "date": "2026-03-30T19:45:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Despojo violento de celular a una joven por parte de un sujeto que huyó corriendo hacia el arroyo."
+    },
+    {
+      "id": "inc_35",
+      "type": "Robo de Vehículo",
+      "colonia": "valle_sol",
+      "lat": 20.65345,
+      "lon": -101.34812,
+      "date": "2026-04-07T03:00:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Robo de auto estacionado en la vía pública; ladrones forzaron la chapa de la puerta."
+    },
+    {
+      "id": "inc_36",
+      "type": "Asalto/Lesiones",
+      "colonia": "tierra_nueva",
+      "lat": 20.65702,
+      "lon": -101.32612,
+      "date": "2026-04-15T21:10:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Atraco violento en farmacia de la colonia; daños materiales al forzar la caja registradora."
+    },
+    {
+      "id": "inc_37",
+      "type": "Vandalismo",
+      "colonia": "bella_vista",
+      "lat": 20.69721,
+      "lon": -101.34251,
+      "date": "2026-04-23T22:30:00",
+      "timePeriod": "Noche",
+      "severity": "Baja",
+      "description": "Pintado de grafitis en monumentos y paradas de camión en la zona residencial."
+    },
+    {
+      "id": "inc_38",
+      "type": "Homicidio",
+      "colonia": "san_cayetano",
+      "lat": 20.69152,
+      "lon": -101.32295,
+      "date": "2026-05-02T22:00:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Persona del sexo masculino agredida a disparos en un parque público."
+    },
+    {
+      "id": "inc_39",
+      "type": "Robo a Transeúnte",
+      "colonia": "purisima_jardin",
+      "lat": 20.64212,
+      "lon": -101.38621,
+      "date": "2026-05-10T14:15:00",
+      "timePeriod": "Tarde",
+      "severity": "Media",
+      "description": "Asalto a transeúnte con arma blanca en callejón poco transitado cerca del río."
+    },
+    {
+      "id": "inc_40",
+      "type": "Robo de Vehículo",
+      "colonia": "las_heras",
+      "lat": 20.68425,
+      "lon": -101.37499,
+      "date": "2026-05-18T18:50:00",
+      "timePeriod": "Tarde",
+      "severity": "Media",
+      "description": "Despojo violento de una motocicleta en semáforo de cruce principal."
+    },
+    {
+      "id": "inc_41",
+      "type": "Asalto/Lesiones",
+      "colonia": "san_martin",
+      "lat": 20.66201,
+      "lon": -101.37985,
+      "date": "2026-05-26T20:30:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Detonaciones de arma de fuego en riña callejera dejan una persona herida en una pierna."
+    },
+    {
+      "id": "inc_42",
+      "type": "Homicidio",
+      "colonia": "doce_diciembre",
+      "lat": 20.65521,
+      "lon": -101.35821,
+      "date": "2026-06-01T23:15:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Incidente armado de alta gravedad reportado cerca del bulevar; una víctima mortal."
+    },
+    {
+      "id": "inc_43",
+      "type": "Extorsión/Fraude",
+      "colonia": "centro",
+      "lat": 20.67412,
+      "lon": -101.34699,
+      "date": "2026-06-02T12:00:00",
+      "timePeriod": "Tarde",
+      "severity": "Baja",
+      "description": "Simulación de sorteo fraudulento detectado en la plazuela comercial del Centro."
+    },
+    {
+      "id": "gen_inc_0",
+      "type": "Robo a Transeúnte",
+      "colonia": "san_miguel",
+      "lat": 20.681025898499147,
+      "lon": -101.34722580358803,
+      "date": "2026-05-04T00:47:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Robo de celular y dinero bajo amenazas por ciclista."
+    },
+    {
+      "id": "gen_inc_1",
+      "type": "Homicidio",
+      "colonia": "las_heras",
+      "lat": 20.682003526253734,
+      "lon": -101.37380276889665,
+      "date": "2026-03-03T18:27:00",
+      "timePeriod": "Tarde",
+      "severity": "Alta",
+      "description": "Agresión letal con arma de fuego frente a establecimiento."
+    },
+    {
+      "id": "gen_inc_2",
+      "type": "Robo de Vehículo",
+      "colonia": "bella_vista",
+      "lat": 20.69762485978713,
+      "lon": -101.33983398680326,
+      "date": "2026-03-07T22:41:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Cristalazo a auto sedán sustrayendo equipo de sonido y bolsas."
+    },
+    {
+      "id": "gen_inc_3",
+      "type": "Robo de Vehículo",
+      "colonia": "ganadera",
+      "lat": 20.667507196334753,
+      "lon": -101.37065554109695,
+      "date": "2025-07-25T05:44:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Robo de motocicleta estacionada frente a local comercial."
+    },
+    {
+      "id": "gen_inc_4",
+      "type": "Vandalismo",
+      "colonia": "purisima_jardin",
+      "lat": 20.640883046070552,
+      "lon": -101.39018974689954,
+      "date": "2025-08-03T12:06:00",
+      "timePeriod": "Tarde",
+      "severity": "Baja",
+      "description": "Daño intencional a medidores de agua de casas habitación."
+    },
+    {
+      "id": "gen_inc_5",
+      "type": "Homicidio",
+      "colonia": "valle_sol",
+      "lat": 20.656073632649772,
+      "lon": -101.34776706173345,
+      "date": "2026-02-18T03:59:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Ataque directo que cobró la vida de una persona en vía pública."
+    },
+    {
+      "id": "gen_inc_6",
+      "type": "Homicidio",
+      "colonia": "doce_diciembre",
+      "lat": 20.65731077838552,
+      "lon": -101.35513714935537,
+      "date": "2025-12-19T06:45:00",
+      "timePeriod": "Mañana",
+      "severity": "Alta",
+      "description": "Agresión letal con arma de fuego frente a establecimiento."
+    },
+    {
+      "id": "gen_inc_7",
+      "type": "Robo de Vehículo",
+      "colonia": "san_miguel",
+      "lat": 20.67700917868009,
+      "lon": -101.34947580509841,
+      "date": "2025-10-28T03:24:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Cristalazo a auto sedán sustrayendo equipo de sonido y bolsas."
+    },
+    {
+      "id": "gen_inc_8",
+      "type": "Extorsión/Fraude",
+      "colonia": "hacienda_virgen",
+      "lat": 20.65296914801738,
+      "lon": -101.33221462086078,
+      "date": "2026-05-09T22:59:00",
+      "timePeriod": "Noche",
+      "severity": "Baja",
+      "description": "Extorsión telefónica simulando secuestro de familiar."
+    },
+    {
+      "id": "gen_inc_9",
+      "type": "Asalto/Lesiones",
+      "colonia": "san_miguel",
+      "lat": 20.680687733709032,
+      "lon": -101.3504253937822,
+      "date": "2025-10-06T14:24:00",
+      "timePeriod": "Tarde",
+      "severity": "Alta",
+      "description": "Agresión física a transeúnte al intentar resistirse a asalto."
+    },
+    {
+      "id": "gen_inc_10",
+      "type": "Robo a Transeúnte",
+      "colonia": "las_heras",
+      "lat": 20.68224908613183,
+      "lon": -101.3765400200949,
+      "date": "2025-12-27T01:14:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Sujeto arrebató bolso con pertenencias y huyó con cómplice."
+    },
+    {
+      "id": "gen_inc_11",
+      "type": "Robo de Vehículo",
+      "colonia": "tierra_nueva",
+      "lat": 20.65692136296811,
+      "lon": -101.32823473883452,
+      "date": "2026-04-23T10:13:00",
+      "timePeriod": "Mañana",
+      "severity": "Media",
+      "description": "Robo violento de automóvil despojando al dueño al estacionarse."
+    },
+    {
+      "id": "gen_inc_12",
+      "type": "Vandalismo",
+      "colonia": "san_miguel",
+      "lat": 20.682155360185217,
+      "lon": -101.34916689646401,
+      "date": "2025-10-24T17:34:00",
+      "timePeriod": "Tarde",
+      "severity": "Baja",
+      "description": "Pintado ilegal en cortina metálica de comercio céntrico."
+    },
+    {
+      "id": "gen_inc_13",
+      "type": "Robo a Transeúnte",
+      "colonia": "doce_diciembre",
+      "lat": 20.65296918923544,
+      "lon": -101.36091382598794,
+      "date": "2025-10-05T16:31:00",
+      "timePeriod": "Tarde",
+      "severity": "Media",
+      "description": "Robo de celular y dinero bajo amenazas por ciclista."
+    },
+    {
+      "id": "gen_inc_14",
+      "type": "Robo de Vehículo",
+      "colonia": "valle_sol",
+      "lat": 20.653971600415694,
+      "lon": -101.34529915135671,
+      "date": "2026-05-14T19:04:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Cristalazo a auto sedán sustrayendo equipo de sonido y bolsas."
+    },
+    {
+      "id": "gen_inc_15",
+      "type": "Asalto/Lesiones",
+      "colonia": "hacienda_virgen",
+      "lat": 20.653904491128603,
+      "lon": -101.33357237168877,
+      "date": "2025-07-22T23:07:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Riña campal vecinal que deja heridos con objetos contundentes."
+    },
+    {
+      "id": "gen_inc_16",
+      "type": "Asalto/Lesiones",
+      "colonia": "centro",
+      "lat": 20.67238222335526,
+      "lon": -101.34672029720865,
+      "date": "2025-11-14T05:29:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Agresión física a transeúnte al intentar resistirse a asalto."
+    },
+    {
+      "id": "gen_inc_17",
+      "type": "Robo a Transeúnte",
+      "colonia": "tierra_nueva",
+      "lat": 20.65726304017384,
+      "lon": -101.32869652228766,
+      "date": "2025-09-17T03:55:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Asalto con navaja a transeúnte en cruce con poca iluminación."
+    },
+    {
+      "id": "gen_inc_18",
+      "type": "Asalto/Lesiones",
+      "colonia": "los_cobos",
+      "lat": 20.701167792399033,
+      "lon": -101.37101106280329,
+      "date": "2025-12-25T05:34:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Agresión física a transeúnte al intentar resistirse a asalto."
+    },
+    {
+      "id": "gen_inc_19",
+      "type": "Homicidio",
+      "colonia": "las_heras",
+      "lat": 20.687003546117086,
+      "lon": -101.37741732583552,
+      "date": "2025-12-27T09:15:00",
+      "timePeriod": "Mañana",
+      "severity": "Alta",
+      "description": "Ataque armado en riña entre presuntas bandas rivales."
+    },
+    {
+      "id": "gen_inc_20",
+      "type": "Vandalismo",
+      "colonia": "bella_vista",
+      "lat": 20.69811825575923,
+      "lon": -101.33887205924206,
+      "date": "2026-02-27T02:48:00",
+      "timePeriod": "Noche",
+      "severity": "Baja",
+      "description": "Fachada dañada con grafitis alusivos a pandillas."
+    },
+    {
+      "id": "gen_inc_21",
+      "type": "Robo de Vehículo",
+      "colonia": "flores_magon",
+      "lat": 20.665546394451017,
+      "lon": -101.34142574362355,
+      "date": "2025-09-09T16:55:00",
+      "timePeriod": "Tarde",
+      "severity": "Media",
+      "description": "Robo de motocicleta estacionada frente a local comercial."
+    },
+    {
+      "id": "gen_inc_22",
+      "type": "Asalto/Lesiones",
+      "colonia": "valle_sol",
+      "lat": 20.652881743517707,
+      "lon": -101.3457994014075,
+      "date": "2026-06-07T22:19:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Agresión física a transeúnte al intentar resistirse a asalto."
+    },
+    {
+      "id": "gen_inc_23",
+      "type": "Asalto/Lesiones",
+      "colonia": "doce_diciembre",
+      "lat": 20.65577675065697,
+      "lon": -101.35791461919912,
+      "date": "2026-02-04T07:14:00",
+      "timePeriod": "Mañana",
+      "severity": "Alta",
+      "description": "Agresión física a transeúnte al intentar resistirse a asalto."
+    },
+    {
+      "id": "gen_inc_24",
+      "type": "Homicidio",
+      "colonia": "las_heras",
+      "lat": 20.686392347801775,
+      "lon": -101.37752089855078,
+      "date": "2025-07-03T22:40:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Agresión letal con arma de fuego frente a establecimiento."
+    },
+    {
+      "id": "gen_inc_25",
+      "type": "Asalto/Lesiones",
+      "colonia": "san_cayetano",
+      "lat": 20.694827099684066,
+      "lon": -101.32265829834672,
+      "date": "2025-10-09T21:31:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Agresión física a transeúnte al intentar resistirse a asalto."
+    },
+    {
+      "id": "gen_inc_26",
+      "type": "Robo a Transeúnte",
+      "colonia": "ganadera",
+      "lat": 20.6706128792466,
+      "lon": -101.37351991703387,
+      "date": "2026-02-08T15:51:00",
+      "timePeriod": "Tarde",
+      "severity": "Media",
+      "description": "Robo de celular y dinero bajo amenazas por ciclista."
+    },
+    {
+      "id": "gen_inc_27",
+      "type": "Extorsión/Fraude",
+      "colonia": "hacienda_virgen",
+      "lat": 20.649213225098066,
+      "lon": -101.33313525102528,
+      "date": "2026-01-15T23:03:00",
+      "timePeriod": "Noche",
+      "severity": "Baja",
+      "description": "Extorsión telefónica simulando secuestro de familiar."
+    },
+    {
+      "id": "gen_inc_28",
+      "type": "Homicidio",
+      "colonia": "san_cayetano",
+      "lat": 20.689259776079666,
+      "lon": -101.3253711837495,
+      "date": "2025-12-26T03:15:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Ataque directo que cobró la vida de una persona en vía pública."
+    },
+    {
+      "id": "gen_inc_29",
+      "type": "Homicidio",
+      "colonia": "bella_vista",
+      "lat": 20.70049497727889,
+      "lon": -101.33964780690444,
+      "date": "2026-02-08T02:28:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Ataque armado en riña entre presuntas bandas rivales."
+    },
+    {
+      "id": "gen_inc_30",
+      "type": "Robo de Vehículo",
+      "colonia": "ganadera",
+      "lat": 20.67205255275821,
+      "lon": -101.36968289994142,
+      "date": "2025-08-25T07:10:00",
+      "timePeriod": "Mañana",
+      "severity": "Media",
+      "description": "Robo de motocicleta estacionada frente a local comercial."
+    },
+    {
+      "id": "gen_inc_31",
+      "type": "Asalto/Lesiones",
+      "colonia": "san_miguel",
+      "lat": 20.677867344602628,
+      "lon": -101.3470865594748,
+      "date": "2025-09-13T00:24:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Riña campal vecinal que deja heridos con objetos contundentes."
+    },
+    {
+      "id": "gen_inc_32",
+      "type": "Robo a Transeúnte",
+      "colonia": "san_martin",
+      "lat": 20.6603238062889,
+      "lon": -101.38311581695595,
+      "date": "2026-06-26T17:42:00",
+      "timePeriod": "Tarde",
+      "severity": "Media",
+      "description": "Sujeto arrebató bolso con pertenencias y huyó con cómplice."
+    },
+    {
+      "id": "gen_inc_33",
+      "type": "Homicidio",
+      "colonia": "las_reynas",
+      "lat": 20.690483519619765,
+      "lon": -101.35177919008419,
+      "date": "2026-06-18T01:47:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Ataque armado en riña entre presuntas bandas rivales."
+    },
+    {
+      "id": "gen_inc_34",
+      "type": "Robo a Transeúnte",
+      "colonia": "doce_diciembre",
+      "lat": 20.65606454574515,
+      "lon": -101.35730721212477,
+      "date": "2026-03-06T01:32:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Robo de celular y dinero bajo amenazas por ciclista."
+    },
+    {
+      "id": "gen_inc_35",
+      "type": "Robo a Transeúnte",
+      "colonia": "juarez",
+      "lat": 20.701313591636026,
+      "lon": -101.36119611616154,
+      "date": "2025-10-13T03:56:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Asalto con navaja a transeúnte en cruce con poca iluminación."
+    },
+    {
+      "id": "gen_inc_36",
+      "type": "Asalto/Lesiones",
+      "colonia": "las_reynas",
+      "lat": 20.69183408182339,
+      "lon": -101.35601561296043,
+      "date": "2026-05-19T18:33:00",
+      "timePeriod": "Tarde",
+      "severity": "Alta",
+      "description": "Atraco a mini-supermercado vecinal amagando con arma blanca."
+    },
+    {
+      "id": "gen_inc_37",
+      "type": "Robo a Transeúnte",
+      "colonia": "tierra_nueva",
+      "lat": 20.66021252832194,
+      "lon": -101.3235387599879,
+      "date": "2025-11-13T04:42:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Sujeto arrebató bolso con pertenencias y huyó con cómplice."
+    },
+    {
+      "id": "gen_inc_38",
+      "type": "Homicidio",
+      "colonia": "morelos",
+      "lat": 20.67359069285834,
+      "lon": -101.36614620400744,
+      "date": "2025-07-15T19:36:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Agresión letal con arma de fuego frente a establecimiento."
+    },
+    {
+      "id": "gen_inc_39",
+      "type": "Robo a Transeúnte",
+      "colonia": "santa_julia",
+      "lat": 20.683607679475614,
+      "lon": -101.35039285563991,
+      "date": "2025-12-03T07:23:00",
+      "timePeriod": "Mañana",
+      "severity": "Media",
+      "description": "Asalto con navaja a transeúnte en cruce con poca iluminación."
+    },
+    {
+      "id": "gen_inc_40",
+      "type": "Robo a Transeúnte",
+      "colonia": "bella_vista",
+      "lat": 20.694225105513425,
+      "lon": -101.33935311124519,
+      "date": "2026-05-17T00:42:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Asalto con navaja a transeúnte en cruce con poca iluminación."
+    },
+    {
+      "id": "gen_inc_41",
+      "type": "Robo a Transeúnte",
+      "colonia": "bella_vista",
+      "lat": 20.69773380878921,
+      "lon": -101.34047671469003,
+      "date": "2025-11-04T03:47:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Sujeto arrebató bolso con pertenencias y huyó con cómplice."
+    },
+    {
+      "id": "gen_inc_42",
+      "type": "Extorsión/Fraude",
+      "colonia": "san_miguel",
+      "lat": 20.682207955437555,
+      "lon": -101.34603997400694,
+      "date": "2025-10-22T20:54:00",
+      "timePeriod": "Noche",
+      "severity": "Baja",
+      "description": "Intento de estafa mediante billetes falsos en negocio pequeño."
+    },
+    {
+      "id": "gen_inc_43",
+      "type": "Homicidio",
+      "colonia": "san_miguel",
+      "lat": 20.681268434561137,
+      "lon": -101.34750290635888,
+      "date": "2025-08-21T13:53:00",
+      "timePeriod": "Tarde",
+      "severity": "Alta",
+      "description": "Ataque directo que cobró la vida de una persona en vía pública."
+    },
+    {
+      "id": "gen_inc_44",
+      "type": "Vandalismo",
+      "colonia": "bella_vista",
+      "lat": 20.693567687897257,
+      "lon": -101.34497329297949,
+      "date": "2025-11-06T23:28:00",
+      "timePeriod": "Noche",
+      "severity": "Baja",
+      "description": "Daño intencional a medidores de agua de casas habitación."
+    },
+    {
+      "id": "gen_inc_45",
+      "type": "Extorsión/Fraude",
+      "colonia": "purisima_jardin",
+      "lat": 20.642039906990163,
+      "lon": -101.39020109799281,
+      "date": "2026-06-05T17:02:00",
+      "timePeriod": "Tarde",
+      "severity": "Baja",
+      "description": "Llamada telefónica intimidatoria a locatario exigiendo depósitos."
+    },
+    {
+      "id": "gen_inc_46",
+      "type": "Robo a Transeúnte",
+      "colonia": "purisima_jardin",
+      "lat": 20.643699933874448,
+      "lon": -101.3880181495577,
+      "date": "2025-12-26T01:57:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Robo de celular y dinero bajo amenazas por ciclista."
+    },
+    {
+      "id": "gen_inc_47",
+      "type": "Asalto/Lesiones",
+      "colonia": "san_vicente",
+      "lat": 20.68728353987354,
+      "lon": -101.2978548577695,
+      "date": "2026-03-28T13:39:00",
+      "timePeriod": "Tarde",
+      "severity": "Alta",
+      "description": "Atraco a mini-supermercado vecinal amagando con arma blanca."
+    },
+    {
+      "id": "gen_inc_48",
+      "type": "Vandalismo",
+      "colonia": "las_reynas",
+      "lat": 20.69276164597256,
+      "lon": -101.35216645180138,
+      "date": "2025-09-14T00:11:00",
+      "timePeriod": "Noche",
+      "severity": "Baja",
+      "description": "Pintado ilegal en cortina metálica de comercio céntrico."
+    },
+    {
+      "id": "gen_inc_49",
+      "type": "Robo de Vehículo",
+      "colonia": "morelos",
+      "lat": 20.676059652759363,
+      "lon": -101.36551636397719,
+      "date": "2025-10-09T05:50:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Robo de motocicleta estacionada frente a local comercial."
+    },
+    {
+      "id": "gen_inc_50",
+      "type": "Homicidio",
+      "colonia": "san_roque",
+      "lat": 20.59538250851829,
+      "lon": -101.34024276634162,
+      "date": "2026-02-12T09:52:00",
+      "timePeriod": "Mañana",
+      "severity": "Alta",
+      "description": "Ataque armado en riña entre presuntas bandas rivales."
+    },
+    {
+      "id": "gen_inc_51",
+      "type": "Extorsión/Fraude",
+      "colonia": "tierra_nueva",
+      "lat": 20.660577447810386,
+      "lon": -101.32633538987265,
+      "date": "2025-08-25T08:22:00",
+      "timePeriod": "Mañana",
+      "severity": "Baja",
+      "description": "Extorsión telefónica simulando secuestro de familiar."
+    },
+    {
+      "id": "gen_inc_52",
+      "type": "Asalto/Lesiones",
+      "colonia": "juarez",
+      "lat": 20.701303200381474,
+      "lon": -101.35759400121509,
+      "date": "2025-07-04T08:11:00",
+      "timePeriod": "Mañana",
+      "severity": "Alta",
+      "description": "Riña campal vecinal que deja heridos con objetos contundentes."
+    },
+    {
+      "id": "gen_inc_53",
+      "type": "Asalto/Lesiones",
+      "colonia": "flores_magon",
+      "lat": 20.661740368033414,
+      "lon": -101.34267648369553,
+      "date": "2025-12-24T10:27:00",
+      "timePeriod": "Mañana",
+      "severity": "Alta",
+      "description": "Atraco a mini-supermercado vecinal amagando con arma blanca."
+    },
+    {
+      "id": "gen_inc_54",
+      "type": "Extorsión/Fraude",
+      "colonia": "centro",
+      "lat": 20.675346500028404,
+      "lon": -101.34364255815721,
+      "date": "2025-11-02T22:27:00",
+      "timePeriod": "Noche",
+      "severity": "Baja",
+      "description": "Extorsión telefónica simulando secuestro de familiar."
+    },
+    {
+      "id": "gen_inc_55",
+      "type": "Homicidio",
+      "colonia": "ganadera",
+      "lat": 20.672445395993524,
+      "lon": -101.37163791213038,
+      "date": "2026-06-22T06:23:00",
+      "timePeriod": "Mañana",
+      "severity": "Alta",
+      "description": "Ataque armado en riña entre presuntas bandas rivales."
+    },
+    {
+      "id": "gen_inc_56",
+      "type": "Extorsión/Fraude",
+      "colonia": "santa_julia",
+      "lat": 20.681541650360334,
+      "lon": -101.35185779729059,
+      "date": "2026-05-28T03:46:00",
+      "timePeriod": "Noche",
+      "severity": "Baja",
+      "description": "Extorsión telefónica simulando secuestro de familiar."
+    },
+    {
+      "id": "gen_inc_57",
+      "type": "Extorsión/Fraude",
+      "colonia": "ganadera",
+      "lat": 20.670741225616908,
+      "lon": -101.36968036117987,
+      "date": "2025-11-18T04:12:00",
+      "timePeriod": "Noche",
+      "severity": "Baja",
+      "description": "Intento de estafa mediante billetes falsos en negocio pequeño."
+    },
+    {
+      "id": "gen_inc_58",
+      "type": "Vandalismo",
+      "colonia": "bella_vista",
+      "lat": 20.69550839601808,
+      "lon": -101.34249078295007,
+      "date": "2026-04-19T09:25:00",
+      "timePeriod": "Mañana",
+      "severity": "Baja",
+      "description": "Pintado ilegal en cortina metálica de comercio céntrico."
+    },
+    {
+      "id": "gen_inc_59",
+      "type": "Robo de Vehículo",
+      "colonia": "playa_azul",
+      "lat": 20.661914109806926,
+      "lon": -101.36503799669863,
+      "date": "2026-04-20T20:20:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Robo violento de automóvil despojando al dueño al estacionarse."
+    },
+    {
+      "id": "gen_inc_60",
+      "type": "Extorsión/Fraude",
+      "colonia": "santa_julia",
+      "lat": 20.683017725637537,
+      "lon": -101.35402088959947,
+      "date": "2026-06-06T21:05:00",
+      "timePeriod": "Noche",
+      "severity": "Baja",
+      "description": "Extorsión telefónica simulando secuestro de familiar."
+    },
+    {
+      "id": "gen_inc_61",
+      "type": "Homicidio",
+      "colonia": "san_cayetano",
+      "lat": 20.68999239780855,
+      "lon": -101.32332964559048,
+      "date": "2025-10-22T09:14:00",
+      "timePeriod": "Mañana",
+      "severity": "Alta",
+      "description": "Agresión letal con arma de fuego frente a establecimiento."
+    },
+    {
+      "id": "gen_inc_62",
+      "type": "Extorsión/Fraude",
+      "colonia": "tierra_nueva",
+      "lat": 20.658583879753433,
+      "lon": -101.32662825981693,
+      "date": "2025-08-15T13:56:00",
+      "timePeriod": "Tarde",
+      "severity": "Baja",
+      "description": "Extorsión telefónica simulando secuestro de familiar."
+    },
+    {
+      "id": "gen_inc_63",
+      "type": "Asalto/Lesiones",
+      "colonia": "centro",
+      "lat": 20.675987442847372,
+      "lon": -101.34869251204232,
+      "date": "2025-10-05T20:44:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Atraco a mini-supermercado vecinal amagando con arma blanca."
+    },
+    {
+      "id": "gen_inc_64",
+      "type": "Robo a Transeúnte",
+      "colonia": "bella_vista",
+      "lat": 20.69669523277829,
+      "lon": -101.33989008378795,
+      "date": "2026-06-17T14:03:00",
+      "timePeriod": "Tarde",
+      "severity": "Media",
+      "description": "Robo de celular y dinero bajo amenazas por ciclista."
+    },
+    {
+      "id": "gen_inc_65",
+      "type": "Asalto/Lesiones",
+      "colonia": "las_reynas",
+      "lat": 20.691434566259332,
+      "lon": -101.35317998227107,
+      "date": "2026-05-17T17:38:00",
+      "timePeriod": "Tarde",
+      "severity": "Alta",
+      "description": "Riña campal vecinal que deja heridos con objetos contundentes."
+    },
+    {
+      "id": "gen_inc_66",
+      "type": "Vandalismo",
+      "colonia": "constitucion",
+      "lat": 20.68836878830073,
+      "lon": -101.3141308624945,
+      "date": "2026-03-14T17:28:00",
+      "timePeriod": "Tarde",
+      "severity": "Baja",
+      "description": "Pintado ilegal en cortina metálica de comercio céntrico."
+    },
+    {
+      "id": "gen_inc_67",
+      "type": "Robo a Transeúnte",
+      "colonia": "tierra_nueva",
+      "lat": 20.65425178347705,
+      "lon": -101.32808880294397,
+      "date": "2026-05-09T16:31:00",
+      "timePeriod": "Tarde",
+      "severity": "Media",
+      "description": "Sujeto arrebató bolso con pertenencias y huyó con cómplice."
+    },
+    {
+      "id": "gen_inc_68",
+      "type": "Homicidio",
+      "colonia": "bella_vista",
+      "lat": 20.695118830358098,
+      "lon": -101.3406423513139,
+      "date": "2025-11-11T10:57:00",
+      "timePeriod": "Mañana",
+      "severity": "Alta",
+      "description": "Agresión letal con arma de fuego frente a establecimiento."
+    },
+    {
+      "id": "gen_inc_69",
+      "type": "Robo de Vehículo",
+      "colonia": "ganadera",
+      "lat": 20.66891041963872,
+      "lon": -101.3745521592734,
+      "date": "2026-06-07T02:26:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Cristalazo a auto sedán sustrayendo equipo de sonido y bolsas."
+    },
+    {
+      "id": "gen_inc_70",
+      "type": "Asalto/Lesiones",
+      "colonia": "centro",
+      "lat": 20.673201167202496,
+      "lon": -101.35018312741491,
+      "date": "2026-01-13T18:44:00",
+      "timePeriod": "Tarde",
+      "severity": "Alta",
+      "description": "Agresión física a transeúnte al intentar resistirse a asalto."
+    },
+    {
+      "id": "gen_inc_71",
+      "type": "Extorsión/Fraude",
+      "colonia": "ganadera",
+      "lat": 20.669822926168138,
+      "lon": -101.37177723187742,
+      "date": "2025-12-10T12:54:00",
+      "timePeriod": "Tarde",
+      "severity": "Baja",
+      "description": "Extorsión telefónica simulando secuestro de familiar."
+    },
+    {
+      "id": "gen_inc_72",
+      "type": "Robo de Vehículo",
+      "colonia": "ganadera",
+      "lat": 20.66835290680589,
+      "lon": -101.37124600680481,
+      "date": "2025-10-16T07:17:00",
+      "timePeriod": "Mañana",
+      "severity": "Media",
+      "description": "Cristalazo a auto sedán sustrayendo equipo de sonido y bolsas."
+    },
+    {
+      "id": "gen_inc_73",
+      "type": "Asalto/Lesiones",
+      "colonia": "playa_azul",
+      "lat": 20.66415706540673,
+      "lon": -101.3620017979619,
+      "date": "2026-01-24T05:53:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Agresión física a transeúnte al intentar resistirse a asalto."
+    },
+    {
+      "id": "gen_inc_74",
+      "type": "Robo de Vehículo",
+      "colonia": "doce_diciembre",
+      "lat": 20.657967259489165,
+      "lon": -101.3607615968144,
+      "date": "2026-04-19T21:01:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Robo de motocicleta estacionada frente a local comercial."
+    },
+    {
+      "id": "gen_inc_75",
+      "type": "Robo de Vehículo",
+      "colonia": "playa_azul",
+      "lat": 20.66236599630947,
+      "lon": -101.36169187116097,
+      "date": "2025-11-13T10:13:00",
+      "timePeriod": "Mañana",
+      "severity": "Media",
+      "description": "Cristalazo a auto sedán sustrayendo equipo de sonido y bolsas."
+    },
+    {
+      "id": "gen_inc_76",
+      "type": "Vandalismo",
+      "colonia": "centro",
+      "lat": 20.677537854799567,
+      "lon": -101.34777467759396,
+      "date": "2026-01-09T02:30:00",
+      "timePeriod": "Noche",
+      "severity": "Baja",
+      "description": "Fachada dañada con grafitis alusivos a pandillas."
+    },
+    {
+      "id": "gen_inc_77",
+      "type": "Asalto/Lesiones",
+      "colonia": "centro",
+      "lat": 20.676413101923995,
+      "lon": -101.34587505040389,
+      "date": "2026-05-03T20:02:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Atraco a mini-supermercado vecinal amagando con arma blanca."
+    },
+    {
+      "id": "gen_inc_78",
+      "type": "Extorsión/Fraude",
+      "colonia": "morelos",
+      "lat": 20.673304737884045,
+      "lon": -101.36527969412407,
+      "date": "2025-10-05T15:42:00",
+      "timePeriod": "Tarde",
+      "severity": "Baja",
+      "description": "Llamada telefónica intimidatoria a locatario exigiendo depósitos."
+    },
+    {
+      "id": "gen_inc_79",
+      "type": "Vandalismo",
+      "colonia": "morelos",
+      "lat": 20.67680254541124,
+      "lon": -101.36631670875241,
+      "date": "2025-12-06T19:38:00",
+      "timePeriod": "Noche",
+      "severity": "Baja",
+      "description": "Fachada dañada con grafitis alusivos a pandillas."
+    },
+    {
+      "id": "gen_inc_80",
+      "type": "Robo de Vehículo",
+      "colonia": "valle_sol",
+      "lat": 20.651656108439642,
+      "lon": -101.34795201497126,
+      "date": "2025-07-10T18:43:00",
+      "timePeriod": "Tarde",
+      "severity": "Media",
+      "description": "Robo violento de automóvil despojando al dueño al estacionarse."
+    },
+    {
+      "id": "gen_inc_81",
+      "type": "Asalto/Lesiones",
+      "colonia": "santa_julia",
+      "lat": 20.684321595745523,
+      "lon": -101.34910100948379,
+      "date": "2026-05-08T03:44:00",
+      "timePeriod": "Noche",
+      "severity": "Alta",
+      "description": "Agresión física a transeúnte al intentar resistirse a asalto."
+    },
+    {
+      "id": "gen_inc_82",
+      "type": "Robo de Vehículo",
+      "colonia": "bella_vista",
+      "lat": 20.693982697155636,
+      "lon": -101.3409671972216,
+      "date": "2026-04-26T01:22:00",
+      "timePeriod": "Noche",
+      "severity": "Media",
+      "description": "Cristalazo a auto sedán sustrayendo equipo de sonido y bolsas."
+    },
+    {
+      "id": "gen_inc_83",
+      "type": "Robo a Transeúnte",
+      "colonia": "san_martin",
+      "lat": 20.663248995742713,
+      "lon": -101.37772424882299,
+      "date": "2025-07-28T13:52:00",
+      "timePeriod": "Tarde",
+      "severity": "Media",
+      "description": "Sujeto arrebató bolso con pertenencias y huyó con cómplice."
+    },
+    {
+      "id": "gen_inc_84",
+      "type": "Asalto/Lesiones",
+      "colonia": "los_cobos",
+      "lat": 20.703210086478375,
+      "lon": -101.36471007640168,
+      "date": "2026-06-05T13:11:00",
+      "timePeriod": "Tarde",
+      "severity": "Alta",
+      "description": "Riña campal vecinal que deja heridos con objetos contundentes."
+    }
+  ]
+}

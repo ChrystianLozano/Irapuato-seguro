@@ -1,0 +1,45 @@
+# Workflow para desplegar el mapa interactivo de Irapuato en GitHub Pages de forma automática.
+name: Deploy static content to Pages
+
+on:
+  # Se ejecuta cuando se realiza un push a la rama principal (main)
+  push:
+    branches: ["main"]
+
+  # Permite ejecutar este flujo de trabajo manualmente desde la pestaña Actions
+  workflow_dispatch:
+
+# Establece los permisos del GITHUB_TOKEN para permitir el despliegue a GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Permite solo un despliegue concurrente, cancelando ejecuciones previas en cola
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  # Tarea de despliegue
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Sube todo el repositorio (ya que es un sitio estático puro)
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

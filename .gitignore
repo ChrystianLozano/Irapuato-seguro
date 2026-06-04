@@ -1,0 +1,34 @@
+# Archivos del sistema operativo
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Directorios y configuraciones de agentes / herramientas IA
+.agents/
+.gemini/
+.system_generated/
+scratch/
+
+# Archivos de caché de Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Archivos de registro y logs locales
+*.log
+logs/
+
+# Configuraciones de editores e IDEs (Opcional, buenas prácticas)
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
