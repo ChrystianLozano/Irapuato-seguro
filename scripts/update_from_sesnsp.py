@@ -335,30 +335,50 @@ def main():
         print("\nEl periodo seleccionado no reporta incidencias en Irapuato. Base de datos al día.")
         return
         
-    # 6. Delete previous incidents for this month (prevention of duplicates)
+    # 6. Load target year's incidents from separate file
+    incidents_dir = os.path.join(os.path.dirname(DB_PATH), "incidents")
+    os.makedirs(incidents_dir, exist_ok=True)
+    year_file_path = os.path.join(incidents_dir, f"incidents_{year}.json")
+    
+    year_incidents = []
+    if os.path.exists(year_file_path):
+        try:
+            with open(year_file_path, "r", encoding="utf-8") as yf:
+                year_incidents = json.load(yf)
+            print(f"\n-> Cargados {len(year_incidents)} incidentes previos del año {year} desde su archivo anual.")
+        except Exception as e:
+            print(f"\nAdvertencia: No se pudo leer {year_file_path}, se creará uno nuevo: {e}")
+            
     target_prefix = f"{year}-{month_idx:02d}"
-    initial_count = len(db["incidents"])
+    initial_count = len(year_incidents)
     
     # Filter out any pre-existing auto-generated or real-incident records for this month
-    db["incidents"] = [inc for inc in db["incidents"] if not inc["date"].startswith(target_prefix)]
-    removed_count = initial_count - len(db["incidents"])
+    year_incidents = [inc for inc in year_incidents if not inc["date"].startswith(target_prefix)]
+    removed_count = initial_count - len(year_incidents)
     if removed_count > 0:
-        print(f"\n-> Se eliminaron {removed_count} incidentes existentes del mes {target_prefix} para evitar duplicados.")
+        print(f"-> Se eliminaron {removed_count} incidentes existentes del mes {target_prefix} en el archivo del año {year} para evitar duplicados.")
         
     # 7. Generate geodistributed incidents from counts
     new_incidents = generate_incidents_from_counts(counts, year, month_idx, db["neighborhoods"])
     
-    # 8. Append to database and save
-    db["incidents"].extend(new_incidents)
-    save_database(db)
-    
+    # 8. Append to target year's dataset and save
+    year_incidents.extend(new_incidents)
+    with open(year_file_path, "w", encoding="utf-8") as yf:
+        json.dump(year_incidents, yf, indent=2, ensure_ascii=False)
+        
+    # Clear monolithic incidents array from database.json if any were present
+    if "incidents" in db and len(db["incidents"]) > 0:
+        db["incidents"] = []
+        save_database(db)
+        print(f"-> Limpieza: Se vació la lista de incidentes en la base de datos base '{DB_PATH}'.")
+        
     print(f"\n✓ PROCESO EXITOSO:")
     print(f"  - Se generaron y distribuyeron {len(new_incidents)} incidentes geolocalizados reales.")
-    print(f"  - Se guardaron los cambios en {DB_PATH}.")
-    print(f"  - Total de incidentes en la base de datos ahora: {len(db['incidents'])}")
+    print(f"  - Se guardaron los cambios en {year_file_path}.")
+    print(f"  - Total de incidentes para el año {year} ahora: {len(year_incidents)}")
     print("\nPróximos pasos recomendados:")
     print("  1. Abre el mapa localmente para verificar que aparezcan los datos.")
-    print("  2. Ejecuta 'git add data/database.json CNAME'")
+    print("  2. Ejecuta 'git add data/ database.json CNAME'")
     print("  3. Ejecuta 'git commit -m \"data: actualización con datos reales de SESNSP para " + month_name + " " + str(year) + "\" && git push'")
     print("==========================================================")
 

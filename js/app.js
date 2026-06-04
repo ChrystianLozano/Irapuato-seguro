@@ -11,7 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
     selectedCrimeTypes: [], // Cargado dinámicamente
     selectedSeverity: "all",
     selectedTimePeriod: "all",
-    selectedMonthIndex: 11, // 11 representa "Todos" en el slider (2015 - 2025)
+    selectedYear: 2025,
+    selectedMonth: "11", // Diciembre por defecto
     
     // Capas de mapas
     map: null,
@@ -37,24 +38,12 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Estado de animación de la línea de tiempo
     timelineInterval: null,
-    isTimelinePlaying: false
-  };
+    isTimelinePlaying: false,
 
-  // Mapeo cronológico de los años del slider (para rango histórico 2015 - 2025)
-  const timelineMonths = [
-    { label: "2015", month: null, year: 2015 },
-    { label: "2016", month: null, year: 2016 },
-    { label: "2017", month: null, year: 2017 },
-    { label: "2018", month: null, year: 2018 },
-    { label: "2019", month: null, year: 2019 },
-    { label: "2020", month: null, year: 2020 },
-    { label: "2021", month: null, year: 2021 },
-    { label: "2022", month: null, year: 2022 },
-    { label: "2023", month: null, year: 2023 },
-    { label: "2024", month: null, year: 2024 },
-    { label: "2025", month: null, year: 2025 },
-    { label: "Todos", month: null, year: null }
-  ];
+    // Datos cargados dinámicamente por año
+    loadedIncidents: [],
+    cachedYearIncidents: {}
+  };
 
   // Ponderaciones de severidad para cálculo dinámico de riesgo
   const CRIME_WEIGHTS = {
@@ -71,6 +60,25 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==========================================================================
   let DATABASE = null; // Cargado dinámicamente desde JSON
 
+  async function loadIncidentsForYear(year) {
+    if (state.cachedYearIncidents[year]) {
+      state.loadedIncidents = state.cachedYearIncidents[year];
+      return;
+    }
+    
+    try {
+      const response = await fetch(`./data/incidents/incidents_${year}.json`);
+      if (!response.ok) throw new Error(`Status: ${response.status}`);
+      const data = await response.json();
+      state.cachedYearIncidents[year] = data;
+      state.loadedIncidents = data;
+    } catch (err) {
+      console.error(`Error al cargar incidentes del año ${year}:`, err);
+      showToast(`Error de conexión al cargar datos del año ${year}`, true);
+      state.loadedIncidents = [];
+    }
+  }
+
   async function init() {
     initMap();
     try {
@@ -79,6 +87,9 @@ document.addEventListener("DOMContentLoaded", () => {
       
       // Sincronizar tipos de delito activos en el estado
       state.selectedCrimeTypes = Object.keys(DATABASE.crimeTypes);
+      
+      // Cargar año por defecto inicial (2025)
+      await loadIncidentsForYear(state.selectedYear);
       
       initUI();
       updateDashboard();
@@ -252,25 +263,35 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("btnShowMarkers").addEventListener("click", () => switchViewMode("markers"));
     document.getElementById("btnShowHeatmap").addEventListener("click", () => switchViewMode("heatmap"));
 
-    // -- Controles de la línea de tiempo --
-    const timelineSlider = document.getElementById("timelineSlider");
-    const timelineTicksContainer = document.getElementById("timelineTicks");
-    
-    // Rellenar marcas (ticks) en slider
-    timelineTicksContainer.innerHTML = "";
-    timelineMonths.forEach((m, idx) => {
-      const tick = document.createElement("span");
-      tick.className = `timeline-tick ${idx === 12 ? 'active' : ''}`;
-      tick.textContent = m.label;
-      tick.addEventListener("click", () => {
-        timelineSlider.value = idx;
-        handleTimelineSliderChange(idx);
-      });
-      timelineTicksContainer.appendChild(tick);
+    // -- Controles de Filtrado Temporal (Selectores Año/Mes) --
+    const yearSelect = document.getElementById("yearSelect");
+    const monthSelect = document.getElementById("monthSelect");
+
+    // Sincronizar valores iniciales con el estado
+    yearSelect.value = state.selectedYear;
+    monthSelect.value = state.selectedMonth;
+
+    yearSelect.addEventListener("change", async (e) => {
+      const year = parseInt(e.target.value);
+      state.selectedYear = year;
+      
+      showToast(`Cargando datos del año ${year}...`, false);
+      
+      // Deshabilitar controles temporalmente durante descarga de red
+      yearSelect.disabled = true;
+      monthSelect.disabled = true;
+      
+      await loadIncidentsForYear(year);
+      
+      yearSelect.disabled = false;
+      monthSelect.disabled = false;
+      
+      updateDashboard();
     });
 
-    timelineSlider.addEventListener("input", (e) => {
-      handleTimelineSliderChange(parseInt(e.target.value));
+    monthSelect.addEventListener("change", (e) => {
+      state.selectedMonth = e.target.value;
+      updateDashboard();
     });
 
     document.getElementById("timelinePlayBtn").addEventListener("click", toggleTimelinePlayback);
@@ -332,7 +353,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Obtener incidentes aplicando todos los filtros activos
   function getFilteredIncidents() {
     // Unir incidentes estáticos y dinámicos creados en sesión
-    const allIncidents = [...DATABASE.incidents, ...state.customReports];
+    const allIncidents = [...state.loadedIncidents, ...state.customReports];
     
     return allIncidents.filter(inc => {
       // 1. Filtro Tipo de Delito
@@ -344,14 +365,11 @@ document.addEventListener("DOMContentLoaded", () => {
       // 3. Filtro Período Horario
       if (state.selectedTimePeriod !== "all" && inc.timePeriod !== state.selectedTimePeriod) return false;
       
-      // 4. Filtro Historial de Tiempo (Timeline Slider)
-      if (state.selectedMonthIndex !== 11) { // 11 es "Todos"
-        const timelineTarget = timelineMonths[state.selectedMonthIndex];
-        const incDate = new Date(inc.date);
-        const incYear = incDate.getFullYear();
-        
-        // Mostrar incidentes ocurridos en el año seleccionado
-        if (incYear !== timelineTarget.year) return false;
+      // 4. Filtro por Mes (en memoria)
+      if (state.selectedMonth !== "all") {
+        const incMonthStr = inc.date.split('-')[1];
+        const targetMonthStr = String(parseInt(state.selectedMonth) + 1).padStart(2, '0');
+        if (incMonthStr !== targetMonthStr) return false;
       }
       
       return true;
@@ -668,13 +686,21 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("statSafeCount").textContent = safeCount;
 
     // 2. Renderizar los gráficos usando Chart.js
-    renderCharts(filteredIncidents);
+    // Calcular tendencia mensual sobre todo el año seleccionado (ignorando el filtro de mes)
+    const yearFilteredIncidents = state.loadedIncidents.filter(inc => {
+      if (!state.selectedCrimeTypes.includes(inc.type)) return false;
+      if (state.selectedSeverity !== "all" && inc.severity !== state.selectedSeverity) return false;
+      if (state.selectedTimePeriod !== "all" && inc.timePeriod !== state.selectedTimePeriod) return false;
+      return true;
+    });
+
+    renderCharts(filteredIncidents, yearFilteredIncidents);
     
     // 3. Refrescar el mapa
     updateMapLayers();
 
     // 4. Actualizar fecha de última actualización en footer
-    const allInc = [...DATABASE.incidents, ...state.customReports];
+    const allInc = [...state.loadedIncidents, ...state.customReports];
     if (allInc.length > 0) {
       let maxDateStr = "2025-07-01T00:00:00";
       allInc.forEach(inc => {
@@ -693,7 +719,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Dibujar/Actualizar gráficos de Chart.js
-  function renderCharts(incidents) {
+  function renderCharts(incidents, yearIncidentsForTrend) {
     // -- Gráfico 1: Doughnut de Tipos de Delito --
     const typeCounts = {};
     Object.keys(DATABASE.crimeTypes).forEach(t => typeCounts[t] = 0);
@@ -734,34 +760,19 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // -- Gráfico 2: Línea de Tendencia (Mensual si hay año seleccionado, Anual si es "Todos") --
-    let trendLabels = [];
-    let trendData = [];
+    // -- Gráfico 2: Línea de Tendencia Mensual (Siempre mensual de Ene a Dic para el año cargado) --
+    const trendLabels = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
+    const trendData = Array(12).fill(0);
     
-    if (state.selectedMonthIndex !== 11) {
-      // Año seleccionado: Agrupar por meses de ese año
-      trendLabels = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
-      trendData = Array(12).fill(0);
-      
-      incidents.forEach(inc => {
-        const date = new Date(inc.date);
-        const m = date.getMonth(); // 0-11
-        trendData[m]++;
-      });
-    } else {
-      // "Todos" seleccionado: Agrupar por años (2015-2025)
-      trendLabels = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"];
-      trendData = Array(11).fill(0);
-      
-      incidents.forEach(inc => {
-        const date = new Date(inc.date);
-        const y = date.getFullYear();
-        const index = y - 2015;
-        if (index >= 0 && index < 11) {
-          trendData[index]++;
+    yearIncidentsForTrend.forEach(inc => {
+      const incMonthStr = inc.date.split('-')[1];
+      if (incMonthStr) {
+        const mIdx = parseInt(incMonthStr) - 1; // 0-11
+        if (mIdx >= 0 && mIdx < 12) {
+          trendData[mIdx]++;
         }
-      });
-    }
+      }
+    });
 
     if (state.charts.trend) {
       state.charts.trend.data.labels = trendLabels;
@@ -864,34 +875,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ==========================================================================
-  // TIMELINE SLIDER Y ANIMACIÓN
+  // ANIMACIÓN POR MESES
   // ==========================================================================
 
-  // Manejar el cambio del slider manual
-  function handleTimelineSliderChange(idx) {
-    state.selectedMonthIndex = idx;
-    
-    // Actualizar estilo activo en los ticks de UI
-    document.querySelectorAll(".timeline-tick").forEach((tick, i) => {
-      if (i === idx) tick.classList.add("active");
-      else tick.classList.remove("active");
-    });
-
-    // Actualizar etiqueta del periodo
-    const label = document.getElementById("timelineDateLabel");
-    if (idx === 11) {
-      label.textContent = "Todos los años (Histórico)";
-    } else {
-      const m = timelineMonths[idx];
-      label.textContent = `Año seleccionado: ${m.label}`;
-    }
-
-    updateDashboard();
-  }
-
-  // Animar el historial mes a mes
+  // Animar el historial mes a mes para el año seleccionado
   function toggleTimelinePlayback() {
     const playBtn = document.getElementById("timelinePlayBtn");
+    const monthSelect = document.getElementById("monthSelect");
     
     if (state.isTimelinePlaying) {
       // Detener
@@ -903,31 +893,38 @@ document.addEventListener("DOMContentLoaded", () => {
       // Iniciar
       state.isTimelinePlaying = true;
       playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-      showToast("Iniciando línea de tiempo delictiva", false);
+      showToast(`Animando meses del año ${state.selectedYear}...`, false);
       
-      // Si está en el final (Todos), resetear al año 0 (2015)
-      let currentVal = parseInt(document.getElementById("timelineSlider").value);
-      if (currentVal >= 11) {
+      let currentVal = monthSelect.value;
+      // Si está en "Todos los meses", iniciar en Enero (0)
+      if (currentVal === "all") {
         currentVal = 0;
-        document.getElementById("timelineSlider").value = 0;
-        handleTimelineSliderChange(0);
+      } else {
+        currentVal = parseInt(currentVal);
       }
+      
+      // Ajustar select a la posición inicial
+      monthSelect.value = String(currentVal);
+      state.selectedMonth = String(currentVal);
+      updateDashboard();
 
       state.timelineInterval = setInterval(() => {
         currentVal++;
         if (currentVal > 11) {
-          // Bucle terminado, parar reproducción
+          // Bucle terminado, parar reproducción y restablecer a "Todos"
           clearInterval(state.timelineInterval);
           state.isTimelinePlaying = false;
           playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-          document.getElementById("timelineSlider").value = 11;
-          handleTimelineSliderChange(11);
-          showToast("Visualización completada", false);
+          monthSelect.value = "all";
+          state.selectedMonth = "all";
+          updateDashboard();
+          showToast("Visualización anual completada", false);
         } else {
-          document.getElementById("timelineSlider").value = currentVal;
-          handleTimelineSliderChange(currentVal);
+          monthSelect.value = String(currentVal);
+          state.selectedMonth = String(currentVal);
+          updateDashboard();
         }
-      }, 2000); // 2 segundos por año
+      }, 1500); // 1.5 segundos por mes para fluidez
     }
   }
 
@@ -1035,12 +1032,15 @@ document.addEventListener("DOMContentLoaded", () => {
         titleOverlay.style.color = "#f3f4f6";
         titleOverlay.style.boxShadow = "0 8px 32px 0 rgba(0, 0, 0, 0.5)";
         titleOverlay.style.backdropFilter = "blur(8px)";
+        const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+        const monthVal = state.selectedMonth === "all" ? "Todos los meses" : monthNames[parseInt(state.selectedMonth)];
         titleOverlay.innerHTML = `
           <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
             <i class="fa-solid fa-shield-halved" style="color: #6366f1; font-size: 16px;"></i>
             <span style="font-weight: 700; font-size: 16px; letter-spacing: 0.5px; background: linear-gradient(135deg, #ffffff 30%, #a5b4fc 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Irapuato Seguro</span>
           </div>
-          <div style="font-size: 11px; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.5px;">Mapa de Monitoreo e Incidencia</div>
+          <div style="font-size: 11px; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Mapa de Monitoreo e Incidencia</div>
+          <div style="font-size: 10px; color: #818cf8; font-weight: 500;">Filtro: ${monthVal} ${state.selectedYear}</div>
         `;
         clonedMap.appendChild(titleOverlay);
 
@@ -1291,15 +1291,13 @@ document.addEventListener("DOMContentLoaded", () => {
         doc.text(timeVal, sideX + 35, currentY);
         currentY += 4.5;
 
-        // Rango de meses
+        // Periodo Seleccionado
         doc.setTextColor(156, 163, 175);
-        doc.text("Rango Histórico:", sideX + 6, currentY);
+        doc.text("Periodo:", sideX + 6, currentY);
         doc.setTextColor(255, 255, 255);
-        let monthVal = "Histórico Total";
-        if (state.selectedMonthIndex !== 11) {
-          monthVal = timelineMonths[state.selectedMonthIndex].label;
-        }
-        doc.text(monthVal, sideX + 35, currentY);
+        const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+        const monthVal = state.selectedMonth === "all" ? "Todos los meses" : monthNames[parseInt(state.selectedMonth)];
+        doc.text(`${monthVal} ${state.selectedYear}`, sideX + 35, currentY);
         currentY += 4.5;
 
         // Delitos activos (contar seleccionados)

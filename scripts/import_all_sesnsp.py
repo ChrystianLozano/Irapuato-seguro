@@ -182,7 +182,7 @@ def main():
                 counts[year][m_idx][crime_type] += val
                 
     # Reset incidents array
-    db["incidents"] = []
+    all_generated_incidents = []
     
     print("-> Generando registros geolocalizados dispersos...")
     random.seed(42)  # For reproducibility
@@ -190,6 +190,7 @@ def main():
     
     for year in sorted(counts.keys()):
         year_total = 0
+        year_incidents = []
         for m_idx in sorted(counts[year].keys()):
             for crime_type, count in counts[year][m_idx].items():
                 if count <= 0:
@@ -219,7 +220,7 @@ def main():
                     
                     desc = random.choice(DETAILS_TEMPLATES[crime_type])
                     
-                    db["incidents"].append({
+                    incident_obj = {
                         "id": f"real_sesnsp_{timestamp}_{random.randint(100,999)}",
                         "type": crime_type,
                         "colonia": colonia["id"],
@@ -229,17 +230,28 @@ def main():
                         "timePeriod": time_period,
                         "severity": severity,
                         "description": desc
-                    })
+                    }
                     
+                    year_incidents.append(incident_obj)
                     generated_count += 1
                     year_total += 1
+                    
         print(f"   * Año {year}: generados {year_total} incidentes.")
         
+        # Save this year's incidents to a separate file
+        incidents_dir = os.path.join(os.path.dirname(DB_PATH), "incidents")
+        os.makedirs(incidents_dir, exist_ok=True)
+        year_file_path = os.path.join(incidents_dir, f"incidents_{year}.json")
+        with open(year_file_path, "w", encoding="utf-8") as yf:
+            json.dump(year_incidents, yf, indent=2, ensure_ascii=False)
+            
     print(f"\n-> Total de incidentes generados e importados: {generated_count}")
     
-    # Save the database
+    # Save the base database (clear incidents)
+    db["incidents"] = []
     save_database(db)
-    print(f"✓ Base de datos guardada con éxito en {DB_PATH}.")
+    print(f"✓ Base de datos principal guardada con éxito en {DB_PATH}.")
+    print(f"✓ Archivos anuales de incidentes guardados en la carpeta: {incidents_dir}/")
     print("==========================================================")
 
 if __name__ == "__main__":

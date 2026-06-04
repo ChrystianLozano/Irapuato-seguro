@@ -1025,64 +1025,67 @@ body, html {
   transform: scale(1.05);
 }
 
-.timeline-slider-container {
+.temporal-filter-container {
   flex-grow: 1;
   display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  gap: 1.25rem;
+  align-items: center;
 }
 
-.timeline-date {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--text-main);
-}
-
-.timeline-slider {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 5px;
-  border-radius: 3px;
-  background: rgba(255, 255, 255, 0.1);
-  outline: none;
-  position: relative;
-}
-
-.timeline-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: #ffffff;
-  border: 3px solid var(--primary);
-  cursor: pointer;
-  box-shadow: 0 0 8px var(--primary);
-  transition: transform var(--transition-fast);
-}
-
-.timeline-slider::-webkit-slider-thumb:hover {
-  transform: scale(1.2);
-}
-
-.timeline-ticks {
+.select-wrapper {
   display: flex;
-  justify-content: space-between;
-  padding: 0 2px;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
 }
 
-.timeline-tick {
-  font-size: 0.65rem;
+.select-wrapper label {
+  font-size: 0.7rem;
+  font-weight: 600;
   color: var(--text-dim);
-  position: relative;
-  cursor: pointer;
-  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.timeline-tick.active {
+.temporal-select {
+  background: rgba(15, 17, 26, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
   color: var(--text-main);
-  font-weight: 500;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.8rem;
+  font-family: inherit;
+  outline: none;
+  cursor: pointer;
+  width: 100%;
+  transition: all var(--transition-fast);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.temporal-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary-glow);
+}
+
+.temporal-select option {
+  background: #0f111a;
+  color: var(--text-main);
+}
+
+@media (max-width: 480px) {
+  .temporal-filter-container {
+    gap: 0.5rem;
+  }
+  .temporal-select {
+    padding: 0.35rem 0.45rem;
+    font-size: 0.75rem;
+  }
+  .select-wrapper label {
+    font-size: 0.65rem;
+  }
 }
 
 /* ==========================================================================
