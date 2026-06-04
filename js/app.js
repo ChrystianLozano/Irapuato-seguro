@@ -1367,8 +1367,8 @@ document.addEventListener("DOMContentLoaded", () => {
         doc.setFont("helvetica", "normal");
         doc.setFontSize(7.5);
         doc.setTextColor(107, 114, 128); // #6b7280
-        doc.text("Fuente de datos: Basado en el Observatorio Ciudadano Irapuato ¿Cómo Vamos? del periodo Julio 2025 - Junio 2026.", 15, footerY + 5);
-        doc.text("Este documento es una representación digital generada localmente y contiene información estadística simulada.", 15, footerY + 8);
+        doc.text("Fuente de datos: Datos oficiales del SESNSP y del Observatorio Ciudadano Irapuato ¿Cómo Vamos?.", 15, footerY + 5);
+        doc.text("Este documento es una representación digital generada localmente que refleja las estadísticas oficiales e históricas.", 15, footerY + 8);
         doc.text("IRAPUATO SEGURO PORTAL", pageW - 15, footerY + 5, { align: "right" });
 
         // Guardar reporte PDF
