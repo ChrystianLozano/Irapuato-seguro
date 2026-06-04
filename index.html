@@ -21,7 +21,7 @@
   <meta property="og:title" content="Irapuato Seguro | Mapa Delictivo e Incidencia Interactivo">
   <meta property="og:description" content="Portal interactivo táctico para visualizar zonas de riesgo, estadísticas y reportes mensuales de delincuencia por colonias en Irapuato, Guanajuato.">
   <meta property="og:url" content="https://irapuato-seguro.chrystian.dev/">
-  <meta property="og:image" content="https://irapuato-seguro.chrystian.dev/favicon.svg">
+  <meta property="og:image" content="https://irapuato-seguro.chrystian.dev/og-image.png">
   <meta property="og:site_name" content="Irapuato Seguro">
   <meta property="og:locale" content="es_MX">
   
@@ -29,7 +29,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Irapuato Seguro | Mapa Delictivo e Incidencia">
   <meta name="twitter:description" content="Portal interactivo de monitoreo de delincuencia por colonias en Irapuato. Analiza estadísticas y tendencias delictivas en tiempo real.">
-  <meta name="twitter:image" content="https://irapuato-seguro.chrystian.dev/favicon.svg">
+  <meta name="twitter:image" content="https://irapuato-seguro.chrystian.dev/og-image.png">
 
   <!-- Datos Estructurados Schema.org (JSON-LD) para Google Search y Google Dataset Search -->
   <script type="application/ld+json">
@@ -140,14 +140,14 @@
 
         <!-- Filter Sections Toggle tabs -->
         <div class="filter-group">
-          <h3>Filtros por Tipo de Delito</h3>
+          <h2>Filtros por Tipo de Delito</h2>
           <div class="crime-types-filter" id="crimeTypesFilter">
             <!-- Dynamically populated in app.js -->
           </div>
         </div>
 
         <div class="filter-group">
-          <h3>Filtros por Severidad y Horario</h3>
+          <h2>Filtros por Severidad y Horario</h2>
           <div class="severity-filter">
             <button class="severity-btn active" data-severity="all">Todos</button>
             <button class="severity-btn" data-severity="Alta"><span class="badge badge-high"></span> Alto</button>
@@ -261,7 +261,7 @@
           <div class="logo-glow"></div>
           <i class="fa-solid fa-chart-column brand-icon text-info"></i>
           <div>
-            <h1>Análisis Delictivo</h1>
+            <h2>Análisis Delictivo</h2>
             <p>Gráficas e Indicadores</p>
           </div>
         </div>
@@ -269,19 +269,19 @@
 
       <div class="charts-scroll-container">
         <div class="chart-card">
-          <h4>Distribución de Delitos</h4>
+          <h3>Distribución de Delitos</h3>
           <div class="chart-wrapper">
             <canvas id="crimeTypeChart"></canvas>
           </div>
         </div>
         <div class="chart-card">
-          <h4>Historial Mensual</h4>
+          <h3>Historial Mensual</h3>
           <div class="chart-wrapper">
             <canvas id="crimeTrendChart"></canvas>
           </div>
         </div>
         <div class="chart-card">
-          <h4>Colonias de Mayor Riesgo</h4>
+          <h3>Colonias de Mayor Riesgo</h3>
           <div class="chart-wrapper">
             <canvas id="topNeighborhoodsChart"></canvas>
           </div>
