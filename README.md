@@ -63,14 +63,14 @@ Dado que el navegador restringe la lectura de archivos locales (`data/database.j
 Sigue estos sencillos pasos para subir tu proyecto a GitHub y publicarlo para que cualquiera pueda visitarlo en la web:
 
 ### Paso 1: Inicializar Git y subir a tu Repositorio
-1.  Entra a tu cuenta de GitHub y crea un nuevo repositorio llamado `mapa-irapuato`.
+1.  Entra a tu cuenta de GitHub y crea un nuevo repositorio llamado `Irapuato-seguro`.
 2.  En tu terminal local, dentro de la carpeta del proyecto, ejecuta:
     ```bash
     git init
     git add .
     git commit -m "feat: version modularizada con base de datos json y acciones programadas"
     git branch -M main
-    git remote add origin https://github.com/TU-USUARIO/mapa-irapuato.git
+    git remote add origin https://github.com/ChrystianLozano/Irapuato-seguro.git
     git push -u origin main
     ```
 
@@ -81,7 +81,7 @@ Hemos incluido una configuración en `.github/workflows/deploy.yml` para automat
 2.  En el menú lateral izquierdo, haz clic en **Pages** (dentro de la sección *Code and automation*).
 3.  Bajo **Build and deployment**, localiza la opción **Source**.
 4.  Cambia la selección de `Deploy from a branch` a **GitHub Actions**.
-5.  ¡Listo! En unos segundos se ejecutará el flujo de trabajo automáticamente. Puedes ver su progreso en la pestaña **Actions** de tu repositorio. Cuando termine, te proporcionará el enlace público (por ejemplo, `https://tu-usuario.github.io/mapa-irapuato/`).
+5.  ¡Listo! En unos segundos se ejecutará el flujo de trabajo automáticamente. Puedes ver su progreso en la pestaña **Actions** de tu repositorio. Cuando termine, te proporcionará el enlace público (por ejemplo, `https://ChrystianLozano.github.io/Irapuato-seguro/`).
 
 ---
 

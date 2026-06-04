@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Dirección del Sitemap para facilitar el indexado de buscadores
-Sitemap: https://TU-USUARIO.github.io/mapa-irapuato/sitemap.xml
+Sitemap: https://ChrystianLozano.github.io/Irapuato-seguro/sitemap.xml
