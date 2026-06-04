@@ -32,3 +32,6 @@ logs/
 *.njsproj
 *.sln
 *.swp
+
+# Archivos de datos fuentes del SESNSP (muy pesados para GitHub)
+data/*.csv
